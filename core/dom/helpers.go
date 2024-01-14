@@ -124,6 +124,17 @@ func stringToUint8(s string) uint8 {
 	return uint8(i)
 }
 
+func stringToOverflow(s string) Overflow {
+	switch s {
+	case "hidden":
+		return Overflow_Hidden
+	case "scroll":
+		return Overflow_Scroll
+	default:
+		return Overflow_Hidden
+	}
+}
+
 // ------------------------
 //      Math Helpers
 // ------------------------

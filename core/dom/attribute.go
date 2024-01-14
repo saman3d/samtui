@@ -44,6 +44,7 @@ type Attributes struct {
 	Writable        bool
 	TextType        InputType
 	ZIndex          uint8
+	Overflow        Overflow
 }
 
 func NewAttributes(opts ...AttributesOpt) *Attributes {
@@ -148,6 +149,8 @@ func (a *Attributes) AddRaw(attr string, value string) {
 		a.TextType = stringToInputType(value)
 	case AttrName_ZIndex:
 		a.ZIndex = stringToUint8(value)
+	case AttrName_Overflow:
+		a.Overflow = stringToOverflow(value)
 	}
 }
 
@@ -205,6 +208,7 @@ const (
 	AttrName_Writable        AttrName = "writable"
 	AttrName_TextType        AttrName = "text-type"
 	AttrName_ZIndex          AttrName = "z-index"
+	AttrName_Overflow        AttrName = "overflow"
 )
 
 type Display uint8
@@ -256,4 +260,11 @@ const (
 	TextDecoration_None TextDecoration = iota
 	TextDecoration_Underline
 	TextDecoration_LineThrough
+)
+
+type Overflow uint8
+
+const (
+	Overflow_Hidden Overflow = iota
+	Overflow_Scroll
 )

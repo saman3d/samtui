@@ -110,6 +110,8 @@ func (f *Flex) renderRow(ctx context.Context, elem *dom.Element, boundry dom.Bou
 }
 
 func (f *Flex) renderColumn(ctx context.Context, elem *dom.Element, boundry dom.Boundry) error {
+	boundry = renderScrollBar(elem, f.view)
+
 	var total_height = boundry.Height()
 	var flags = newRenderMan(len(elem.Children), RenderFlag_Flex)
 	var total_flex_shares int

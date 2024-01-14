@@ -119,6 +119,7 @@ func (t *TTY) WritePos(x, y int, b []byte) (int, error) {
 }
 
 func (t *TTY) Write(b []byte) (int, error) {
+	b = append(b, []byte(ResetEscape)...)
 	t.setCursor(t.cursor[0]+len(b), t.cursor[1])
 	return t.inpreader.Write(b)
 }

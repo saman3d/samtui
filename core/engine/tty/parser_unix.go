@@ -3,6 +3,10 @@
 
 package tty
 
+const (
+	ResetEscape = "\x1b[0m"
+)
+
 type unixInputtParser struct{}
 
 func newInputParser() InputParser {

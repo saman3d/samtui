@@ -164,6 +164,22 @@ func (b Boundry) Inflate(by int) Boundry {
 	return b
 }
 
+func (b Boundry) InflateMask(by int, m PositionMask) Boundry {
+	if m&PositionMaskTop != 0 {
+		b.FirstY -= by
+	}
+	if m&PositionMaskBottom != 0 {
+		b.SecondY += by
+	}
+	if m&PositionMaskLeft != 0 {
+		b.FirstX -= by
+	}
+	if m&PositionMaskRight != 0 {
+		b.SecondX += by
+	}
+	return b
+}
+
 func (b Boundry) Width() int {
 	return b.SecondX - b.FirstX
 }

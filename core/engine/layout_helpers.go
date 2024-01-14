@@ -58,3 +58,20 @@ func renderBase(elem *dom.Element, v View) {
 		}
 	}
 }
+
+func renderScrollBar(elem *dom.Element, v View) dom.Boundry {
+	if elem.Attrs.Overflow == dom.Overflow_Scroll {
+		for y := 0; y < elem.Boundry.Height(); y++ {
+			h := elem.Boundry.Height()
+			if y > h/2 {
+				v.PrintRune(elem.Boundry.SecondX-1, elem.Boundry.FirstY+y, elem.Attrs.Color, elem.Attrs.BackGroundColor, elem.Attrs.ZIndex, '█')
+			} else {
+				v.PrintRune(elem.Boundry.SecondX-1, elem.Boundry.FirstY+y, elem.Attrs.Color, elem.Attrs.BackGroundColor, elem.Attrs.ZIndex, '║')
+			}
+		}
+		v.PrintRune(elem.Boundry.SecondX-1, elem.Boundry.FirstY, elem.Attrs.Color, elem.Attrs.BackGroundColor, elem.Attrs.ZIndex, '▲')
+		v.PrintRune(elem.Boundry.SecondX-1, elem.Boundry.SecondY-1, elem.Attrs.Color, elem.Attrs.BackGroundColor, elem.Attrs.ZIndex, '▼')
+		return elem.Boundry.ShrinkMask(1, dom.PositionMaskRight)
+	}
+	return elem.Boundry
+}
